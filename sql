@@ -5,21 +5,21 @@ CREATE DATABASE IF NOT EXISTS task_management;
 
 -- Таблица tasks для хранения информации о задачах
 CREATE TABLE IF NOT EXISTS tasks (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(255) NOT NULL,
-    priority ENUM('Высокий', 'Средний', 'Низкий') NOT NULL,
+    id INT PRIMARY KEY AUTO_INCREMENT, -- Уникальный номер, автоматически увеличивается
+    title VARCHAR(255) NOT NULL,       -- Название задачи (обязательно)
+    priority ENUM('Высокий', 'Средний', 'Низкий') NOT NULL,   -- Приоритет из списка
     due_date DATE NOT NULL,
     status ENUM('Выполнена', 'В процессе', 'Отложена') NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,    -- Дата создания (авто)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  -- Дата обновления (авто)
 );
 
 -- Таблица users для хранения информации о пользователях
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL UNIQUE,
-    email VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    email VARCHAR(255),    
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP   -- Дата регистрации
 );
 
 -- Таблица task_assignments для учета назначений задач пользователям
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS task_assignments (
     assignment_id INT PRIMARY KEY AUTO_INCREMENT,
     task_id INT NOT NULL,
     user_id INT NOT NULL,
-    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- Дата назначения
     );
 
 
