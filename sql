@@ -78,11 +78,11 @@ SELECT
     t.priority AS 'Приоритет',
     t.due_date AS 'Срок выполнения',
     t.status AS 'Статус'
-FROM tasks t
-JOIN task_assignments ta ON t.id = ta.task_id
-JOIN users u ON ta.user_id = u.id
-WHERE u.name = 'Иван Петров'
-ORDER BY t.priority DESC, t.due_date ASC;
+FROM tasks t  -- выбираются все записи из таблицы задач( from указывает основную таблицу для запроса)
+JOIN task_assignments ta ON t.id = ta.task_id  --находим все назначения для каждой задачи ( join Оьединяет две таблицы)
+JOIN users u ON ta.user_id = u.id  --находим пользователей, которым назначены задачи
+WHERE u.name = 'Иван Петров' 
+ORDER BY t.priority DESC, t.due_date ASC; --Сортируем результат( order by сортировка результатов)
 
 -- Запрос 3: Поиск задач с высоким приоритетом, срок выполнения которых истекает в ближайшие 7 дней
 SELECT 
@@ -101,7 +101,7 @@ SELECT
     COUNT(*) AS 'Количество задач'
 FROM tasks
 GROUP BY status
-ORDER BY COUNT(*) DESC;
+ORDER BY COUNT(*) DESC; --(count-подсчитывает количество строк)
 
 
 
